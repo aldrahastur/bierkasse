@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\BeverageController;
+use App\Http\Controllers\CountingController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +25,15 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('users', UserController::class);
+    Route::resource('beverages', BeverageController::class);
+    Route::resource('members', MemberController::class);
+    Route::get('transactions', TransactionController::class)->name('transactions');
+    Route::get('counting', [CountingController::class, 'user'])->name('counting.user');
+});
+
 
 require __DIR__.'/auth.php';
