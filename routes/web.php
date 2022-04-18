@@ -26,6 +26,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::prefix('pages')->group(function() {
+    return view('welcome');
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('users', UserController::class);
@@ -34,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('transactions', TransactionController::class)->name('transactions');
     Route::get('counting', [CountingController::class, 'user'])->name('counting.user');
 });
+
 
 
 require __DIR__.'/auth.php';
