@@ -17,8 +17,8 @@ class UserSeeder extends Seeder
     public function run()
     {
         $user = [
-            'name' => 'Willi Helwig H15',
-            'email' => 'admin@wingolf-halle.de',
+            'name' => 'Admin User H01',
+            'email' => 'admin@admin.com',
             'password' => Hash::make('password'), // password
         ];
         User::insert($user);
