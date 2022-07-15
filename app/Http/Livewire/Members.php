@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Member;
+use App\Models\Team;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -11,7 +13,9 @@ class Members extends Component
     use WithPagination;
 
     public $showModal = false;
+
     public $memberId;
+
     public $member;
 
     protected $paginationTheme = 'tailwind';
@@ -24,8 +28,10 @@ class Members extends Component
 
     public function render()
     {
+        $team = auth()->user()->currentTeam;
+
         return view('livewire.members', [
-            'members' => Member::latest()->paginate(5)
+            'members' => Team::find(Auth::user()->current_team_id)->users()->paginate(5),
         ]);
     }
 
@@ -33,7 +39,7 @@ class Members extends Component
     {
         $this->showModal = true;
         $this->userId = $userId;
-        $this->user = Member::find($userId);
+        $this->user = User::find($userId);
     }
 
     public function create()
@@ -47,12 +53,22 @@ class Members extends Component
     {
         $this->validate();
 
-        if (!is_null($this->userId)) {
+        if (! is_null($this->userId)) {
             $this->product->save();
         } else {
-            Member::create($this->user);
+            User::create($this->user);
         }
         $this->showModal = false;
+    }
+
+    public function addAmount()
+    {
+        $this->showAmountModal = true;
+    }
+
+    public function saveAmount()
+    {
+        $this->showAmountModal = false;
     }
 
     public function close()
@@ -62,7 +78,7 @@ class Members extends Component
 
     public function delete($userId)
     {
-        $user = Member::find($userId);
+        $user = User::find($userId);
         if ($user) {
             $user->delete();
         }

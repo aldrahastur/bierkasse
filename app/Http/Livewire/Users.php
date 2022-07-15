@@ -11,20 +11,23 @@ class Users extends Component
     use WithPagination;
 
     public $showModal = false;
+
     public $userId;
+
     public $user;
 
     protected $paginationTheme = 'tailwind';
 
     protected $rules = [
-        'user.name' => 'required',
+        'user.firstname' => 'required',
+        'user.lastname' => 'required',
         'user.email' => 'required|email',
     ];
 
     public function render()
     {
         return view('livewire.users', [
-            'users' => User::latest()->paginate(5)
+            'users' => User::latest()->paginate(5),
         ]);
     }
 
@@ -46,7 +49,7 @@ class Users extends Component
     {
         $this->validate();
 
-        if (!is_null($this->userId)) {
+        if (! is_null($this->userId)) {
             $this->product->save();
         } else {
             User::create($this->user);

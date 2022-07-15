@@ -6,6 +6,6 @@ class MemberController extends Controller
 {
     public function index()
     {
-       return view('content.members');
+        return view('content.members');
     }
 }

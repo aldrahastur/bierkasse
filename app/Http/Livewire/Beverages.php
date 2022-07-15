@@ -11,20 +11,23 @@ class Beverages extends Component
     use WithPagination;
 
     public $showModal = false;
+
     public $productId;
+
     public $product;
 
     protected $paginationTheme = 'tailwind';
 
     protected $rules = [
         'product.name' => 'required',
-        'product.price' => 'required|numeric',
+        'product.selling_price' => 'required|numeric',
+        'product.purchase_price' => 'numeric',
     ];
 
     public function render()
     {
         return view('livewire.beverages', [
-            'products' => Beverage::latest()->paginate(5)
+            'products' => Beverage::latest()->paginate(5),
         ]);
     }
 
@@ -46,7 +49,7 @@ class Beverages extends Component
     {
         $this->validate();
 
-        if (!is_null($this->productId)) {
+        if (! is_null($this->productId)) {
             $this->product->save();
         } else {
             Beverage::create($this->product);

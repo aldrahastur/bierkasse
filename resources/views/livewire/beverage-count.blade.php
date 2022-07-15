@@ -5,7 +5,7 @@
     <form wire:submit.prevent="saveInvoice">
         @csrf
         <div>
-            <label>{{ $invoiceableUser->name }}</label>
+            <label>{{ __('Counting for:') }} {{ $invoiceableUser->firstname }} {{ $invoiceableUser->lastname }}</label>
             <input wire:model="user_id" type="hidden" name="user_id" class="focus:outline-none w-full border border-indigo-500 rounded-md p-1" value="{{ $invoiceableUser['id'] }}">
         </div>
 
@@ -31,14 +31,14 @@
                                     <input type="hidden" name="invoiceProducts[{{$index}}][product_id]" wire:model="invoiceProducts.{{$index}}.product_id"/>
                                     @if($invoiceProduct['product_name'] && $invoiceProduct['product_price'])
                                         {{ $invoiceProduct['product_name'] }}
-                                        (${{ number_format($invoiceProduct['product_price'], 2) }})
+                                        ({{ number_format($invoiceProduct['product_price'], 2) }} €)
                                     @endif
                                 @else
                                     <select name="invoiceProducts[{{$index}}][product_id]" class="focus:outline-none w-full border {{ $errors->has('invoiceProducts.' . $index) ? 'border-red-500' : 'border-indigo-500' }} rounded-md p-1" wire:model="invoiceProducts.{{$index}}.product_id">
                                         <option value="">-- choose product --</option>
                                         @foreach ($allProducts as $product)
                                             <option value="{{ $product->id }}">
-                                                {{ $product->name }} (${{ number_format($product->price, 2) }})
+                                                {{ $product->name }} ({{ number_format($product->selling_price, 2) }} €)
                                             </option>
                                         @endforeach
                                     </select>
@@ -78,18 +78,11 @@
                     <table>
                         <tr class="">
                             <th class="p-2">Subtotal</th>
-                            <td class="p-2">${{ number_format($subtotal, 2) }}</td>
-                        </tr>
-                        <tr class="border-t border-gray-300">
-                            <th class="p-2">Taxes</th>
-                            <td class="p-2" width="125">
-                                <input type="number" name="taxes" class="border border-indigo-500 rounded-md p-1 w-75 d-inline" min="0" max="100" wire:model="taxes">
-                                %
-                            </td>
+                            <td class="p-2">{{ number_format($subtotal, 2) }} €</td>
                         </tr>
                         <tr class="border-t border-gray-300">
                             <th>Total</th>
-                            <td>${{ number_format($total, 2) }}</td>
+                            <td>{{ number_format($total, 2) }} €</td>
                         </tr>
                     </table>
                 </div>

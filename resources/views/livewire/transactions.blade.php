@@ -4,6 +4,13 @@
         Add new transaction
     </button>
 
+    <a
+        href="{{ route('download.pdf.users-balance') }}"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Download balance sheet
+    </a>
+
+
     <table class="table min-w-full mt-4">
         <thead>
         <tr>
@@ -22,13 +29,13 @@
                     {{ $product->type }}
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-sm leading-5">
-                    {{ $product->value }}
+                    {{ $product->amount }}
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-sm leading-5">
-                    {{ $product->user_id }}
+                    {{ $product->payable_id }}
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-sm leading-5">
-                    {{ $product->donation }}
+                    {{ $product->wallet_id }}
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-sm leading-5">
                     {{ $product->created_at }}

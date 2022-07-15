@@ -11,6 +11,8 @@
             <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 tracking-wider">Lastname</th>
             <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 tracking-wider">Email</th>
             <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 tracking-wider">Status</th>
+            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 tracking-wider">Balance</th>
+            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 tracking-wider">Last counted</th>
             <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 tracking-wider"></th>
         </tr>
         </thead>
@@ -27,7 +29,13 @@
                     {{ $member->email }}
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-sm leading-5">
-                    {{ $member->email }}
+                    {{ $member->status }}
+                </td>
+                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-sm leading-5">
+                    {{ $member->balanceFloat }}
+                </td>
+                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-sm leading-5">
+                    {{ $member->last_counted_at }}
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-sm leading-5">
                     <button
@@ -38,6 +46,10 @@
                         class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150"
                         wire:click.prevent="delete({{ $member->id }})"
                         onclick="confirm('Are you sure?') || event.stopImmediatePropagation()">Delete
+                    </button>
+                    <button
+                        class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150"
+                        wire:click.prevent="addAmount({{ $member->id }})">Add amount
                     </button>
                 </td>
             </tr>

@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-
 use App\Models\Transaction;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -12,7 +11,9 @@ class Transactions extends Component
     use WithPagination;
 
     public $showModal = false;
+
     public $productId;
+
     public $product;
 
     protected $paginationTheme = 'tailwind';
@@ -25,7 +26,7 @@ class Transactions extends Component
     public function render()
     {
         return view('livewire.transactions', [
-            'products' => Transaction::latest()->paginate(5)
+            'products' => Transaction::latest()->paginate(5),
         ]);
     }
 
@@ -45,9 +46,7 @@ class Transactions extends Component
 
     public function save()
     {
-
-
-        if (!is_null($this->productId)) {
+        if (! is_null($this->productId)) {
             $this->product->save();
         } else {
             Transaction::create($this->product);

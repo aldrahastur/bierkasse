@@ -3,6 +3,8 @@
 use App\Http\Controllers\BeverageController;
 use App\Http\Controllers\CountingController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -22,22 +24,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-Route::prefix('pages')->group(function() {
-    return view('welcome');
+Route::prefix('p')->group(function () {
+    Route::get('{page}', [PagesController::class, 'showPublic'])->name('pages.index');
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
     Route::resource('users', UserController::class);
     Route::resource('beverages', BeverageController::class);
     Route::resource('members', MemberController::class);
     Route::get('transactions', TransactionController::class)->name('transactions');
     Route::get('counting', [CountingController::class, 'user'])->name('counting.user');
+    Route::resource('pages', PagesController::class);
+    Route::get('download/users-balance', [PdfController::class, 'usersBalance'])->name('download.pdf.users-balance');
 });
-
-
-
-require __DIR__.'/auth.php';

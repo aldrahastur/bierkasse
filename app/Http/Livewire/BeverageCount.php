@@ -3,18 +3,20 @@
 namespace App\Http\Livewire;
 
 use App\Models\Beverage;
-use App\Models\Transaction;
 use App\Models\User;
 use Livewire\Component;
 
 class BeverageCount extends Component
 {
     public $invoiceProducts = [];
+
     public $allProducts = [];
-    public $taxes = 20;
+
     public $user_id;
+
     public $invoiceSaved = false;
-    public $invoiceableUser ;
+
+    public $invoiceableUser;
 
     public function mount()
     {
@@ -22,7 +24,7 @@ class BeverageCount extends Component
             ->orWhere('last_counted_at', '<', date('Y-m-d 00:00:00'))
             ->where('status', '=', 1)
             ->first();
-        if($this->invoiceableUser === null) {
+        if ($this->invoiceableUser === null) {
             return redirect()->route('dashboard');
         }
         $this->allProducts = Beverage::all();
@@ -40,15 +42,16 @@ class BeverageCount extends Component
 
         return view('livewire.beverage-count', [
             'subtotal' => $total,
-            'total' => $total * (1 + (is_numeric($this->taxes) ? $this->taxes : 0) / 100)
+            'total' => $total,
         ]);
     }
 
     public function addProduct()
     {
         foreach ($this->invoiceProducts as $key => $invoiceProduct) {
-            if (!$invoiceProduct['is_saved']) {
-                $this->addError('invoiceProducts.' . $key, 'This line must be saved before creating a new one.');
+            if (! $invoiceProduct['is_saved']) {
+                $this->addError('invoiceProducts.'.$key, 'This line must be saved before creating a new one.');
+
                 return;
             }
         }
@@ -58,7 +61,7 @@ class BeverageCount extends Component
             'quantity' => 1,
             'is_saved' => false,
             'product_name' => '',
-            'product_price' => 0
+            'product_price' => 0,
         ];
 
         $this->invoiceSaved = false;
@@ -67,8 +70,9 @@ class BeverageCount extends Component
     public function editProduct($index)
     {
         foreach ($this->invoiceProducts as $key => $invoiceProduct) {
-            if (!$invoiceProduct['is_saved']) {
-                $this->addError('invoiceProducts.' . $key, 'This line must be saved before editing another.');
+            if (! $invoiceProduct['is_saved']) {
+                $this->addError('invoiceProducts.'.$key, 'This line must be saved before editing another.');
+
                 return;
             }
         }
@@ -81,7 +85,7 @@ class BeverageCount extends Component
         $this->resetErrorBag();
         $product = $this->allProducts->find($this->invoiceProducts[$index]['product_id']);
         $this->invoiceProducts[$index]['product_name'] = $product->name;
-        $this->invoiceProducts[$index]['product_price'] = $product->price;
+        $this->invoiceProducts[$index]['product_price'] = $product->selling_price;
         $this->invoiceProducts[$index]['is_saved'] = true;
     }
 
@@ -101,19 +105,15 @@ class BeverageCount extends Component
             $lineItems[] = $product;
         }
 
-        $invoice = Transaction::create([
-            'user_id' => $this->invoiceableUser->id,
-            'value' => $total,
-            'type' => 1,
-            'lineItems' => json_encode($lineItems)
-        ]);
-
         $user = User::find($this->invoiceableUser->id);
+        $user->forceWithdraw(($total * 100), ['description' => 'payment of taxes']);
+
         $user->last_counted_at = date('Y-m-d H:i:s');
         $user->save();
 
         $this->reset('invoiceProducts', 'user_id');
         $this->invoiceSaved = true;
-    }
 
+        return redirect()->to('/counting');
+    }
 }

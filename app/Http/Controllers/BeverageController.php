@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class BeverageController extends Controller
 {
-
     public function index()
     {
         $beverages = Beverage::all();
@@ -25,7 +24,7 @@ class BeverageController extends Controller
         //
     }
 
-##
+    //#
     public function show(Beverage $beverage)
     {
         return view('beverages.show', compact('beverage'));

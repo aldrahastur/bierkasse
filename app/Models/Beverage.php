@@ -11,6 +11,7 @@ class Beverage extends Model
 
     protected $fillable = [
         'name',
-        'price'
+        'selling_price',
+        'purchase_price',
     ];
 }

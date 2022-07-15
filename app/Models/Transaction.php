@@ -14,6 +14,6 @@ class Transaction extends Model
         'user_id',
         'value',
         'type',
-        'lineItems'
+        'lineItems',
     ];
 }

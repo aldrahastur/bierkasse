@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class CountingController extends Controller
 {
-    function user() {
+    public function user()
+    {
         return view('counting.user');
     }
 }
