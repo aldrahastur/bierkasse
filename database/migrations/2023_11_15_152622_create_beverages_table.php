@@ -8,12 +8,12 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('beverages', function (Blueprint $table) {
-            $table->id();
+            $table->uuid();
             $table->string('name');
             $table->float('selling_price');
             $table->float('purchase_price')->nullable();
             $table->integer('quantity');
-            $table->foreignId('team_id');
+            $table->foreignUuid('team_id');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('teams', function (Blueprint $table) {
-            $table->id();
-            $table->foreignUlid('user_id')->index();
+            $table->uuid('id');
+            $table->foreignUuid('user_id')->index();
             $table->string('name');
             $table->boolean('personal_team');
             $table->timestamps();
