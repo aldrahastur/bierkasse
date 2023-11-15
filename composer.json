@@ -10,7 +10,7 @@
         "bavix/laravel-wallet": "^10.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10",
-        "laravel/jetstream": "^2.7",
+        "laravel/jetstream": "^4.1",
         "laravel/sanctum": "^3.2",
         "livewire/livewire": "^3"
     },
