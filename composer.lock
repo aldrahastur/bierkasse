@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e74da09adc507069b6c730288c3c42ff",
+    "content-hash": "3086a89bdda3fbcb962d9d4dedac47ca",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -139,41 +139,42 @@
         },
         {
             "name": "bavix/laravel-wallet",
-            "version": "9.6.2",
+            "version": "10.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bavix/laravel-wallet.git",
-                "reference": "2f6355b399d6c2c34574d9025c243d3a7e0e9d20"
+                "reference": "5536ca62c30871a5edd24a719b093d3b0a0d5d44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bavix/laravel-wallet/zipball/2f6355b399d6c2c34574d9025c243d3a7e0e9d20",
-                "reference": "2f6355b399d6c2c34574d9025c243d3a7e0e9d20",
+                "url": "https://api.github.com/repos/bavix/laravel-wallet/zipball/5536ca62c30871a5edd24a719b093d3b0a0d5d44",
+                "reference": "5536ca62c30871a5edd24a719b093d3b0a0d5d44",
                 "shasum": ""
             },
             "require": {
-                "brick/math": "~0.8",
-                "doctrine/dbal": "^2.8|^3.0",
+                "brick/math": "~0.10",
+                "doctrine/dbal": "^3.5",
                 "ext-json": "*",
                 "ext-pdo": "*",
-                "illuminate/contracts": "^9.0|^10.0",
-                "illuminate/database": "^9.37|^10.0",
-                "php": "^8.0",
+                "illuminate/contracts": "^10.0",
+                "illuminate/database": "^10.0",
+                "php": "^8.1",
                 "ramsey/uuid": "^4.0"
             },
             "require-dev": {
-                "brianium/paratest": "^6.4",
-                "cknow/laravel-money": "^7.0",
+                "brianium/paratest": "^7.2",
+                "cknow/laravel-money": "^7.1",
+                "driftingly/rector-laravel": "^0.26",
                 "ergebnis/phpstan-rules": "^1.0",
-                "infection/infection": "~0.26",
-                "laravel/cashier": "^14.0",
-                "nunomaduro/collision": "^6.2",
-                "orchestra/testbench": "^7.7",
-                "phpstan/phpstan": "^1.8",
-                "phpunit/phpunit": "^9.5",
-                "rector/rector": "^0.14",
-                "symplify/easy-coding-standard": "^11.1",
-                "vimeo/psalm": "^4.27"
+                "infection/infection": "~0.27",
+                "laravel/cashier": "^14.12",
+                "nunomaduro/collision": "^7.7",
+                "nunomaduro/larastan": "^2.6",
+                "orchestra/testbench": "^8.5",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^10.2",
+                "rector/rector": "^0.17",
+                "symplify/easy-coding-standard": "^12.0"
             },
             "suggest": {
                 "bavix/laravel-wallet-swap": "Addition to the laravel-wallet library for quick setting of exchange rates",
@@ -217,9 +218,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bavix/laravel-wallet/issues",
-                "source": "https://github.com/bavix/laravel-wallet/tree/9.6.2"
+                "source": "https://github.com/bavix/laravel-wallet/tree/10.0.1"
             },
-            "time": "2023-03-15T17:27:13+00:00"
+            "time": "2023-09-29T21:06:54+00:00"
         },
         {
             "name": "brick/math",
@@ -10195,5 +10196,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
