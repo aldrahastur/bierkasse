@@ -18,7 +18,6 @@ class DeleteUser implements DeletesUsers
     /**
      * Create a new action instance.
      *
-     * @param DeletesTeams $deletesTeams
      * @return void
      */
     public function __construct(DeletesTeams $deletesTeams)

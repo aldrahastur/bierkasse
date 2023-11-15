@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
-    use Uuids, HasFactory;
+    use HasFactory, Uuids;
 
     protected $fillable = [
         'user_id',
