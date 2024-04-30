@@ -146,16 +146,16 @@
         },
         {
             "name": "bavix/laravel-wallet-uuid",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bavix/laravel-wallet-uuid.git",
-                "reference": "0babbd565488952df6e63f5e7a6c0f5c04d1c9e1"
+                "reference": "38f6d93e616852520906fab9ccc926ede1dd063f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bavix/laravel-wallet-uuid/zipball/0babbd565488952df6e63f5e7a6c0f5c04d1c9e1",
-                "reference": "0babbd565488952df6e63f5e7a6c0f5c04d1c9e1",
+                "url": "https://api.github.com/repos/bavix/laravel-wallet-uuid/zipball/38f6d93e616852520906fab9ccc926ede1dd063f",
+                "reference": "38f6d93e616852520906fab9ccc926ede1dd063f",
                 "shasum": ""
             },
             "require": {
@@ -164,7 +164,7 @@
             },
             "require-dev": {
                 "brianium/paratest": "^7.2",
-                "driftingly/rector-laravel": "^0.21.0",
+                "driftingly/rector-laravel": "^0.22.0",
                 "ergebnis/phpstan-rules": "^1.0",
                 "infection/infection": "~0.27",
                 "nunomaduro/collision": "^7.7",
@@ -211,9 +211,9 @@
                 "wallet"
             ],
             "support": {
-                "source": "https://github.com/bavix/laravel-wallet-uuid/tree/2.0.0"
+                "source": "https://github.com/bavix/laravel-wallet-uuid/tree/2.0.1"
             },
-            "time": "2023-07-09T06:56:19+00:00"
+            "time": "2024-01-17T19:40:08+00:00"
         },
         {
             "name": "brick/math",
