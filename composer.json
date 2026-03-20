@@ -9,7 +9,7 @@
         "bavix/laravel-wallet": "^10.1.6",
         "bavix/laravel-wallet-uuid": "^2.0.1",
         "guzzlehttp/guzzle": "^7.8.1",
-        "laravel/cashier": "^15.3.2",
+        "laravel/cashier": "^16.2.0",
         "laravel/framework": "^10.48.13",
         "laravel/jetstream": "^4.3.1",
         "laravel/sanctum": "^3.3.3",
